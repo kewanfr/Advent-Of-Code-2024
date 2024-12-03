@@ -23,7 +23,7 @@ def download_input_txt_file(day, year, year_in_folder_name = False):
   if year_in_folder_name:
     file_dir = os.path.join(file_dir, str(year) + " ")
   
-  file_dir = os.path.join(file_dir, "Dec " + str(day))
+  file_dir = os.path.join(file_dir, "Dec" + str(day))
 
   os.makedirs(os.path.dirname(file_dir), exist_ok=True)
   file_path = os.path.join(file_dir, "input.txt")
