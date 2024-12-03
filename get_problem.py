@@ -28,6 +28,8 @@ YEAR_IN_FOLDER_NAME = False
 DOWNLOAD_INPUT_FILE = True
 # If True, the input file will be downloaded in the folder
 
+TEMPLATE_FILES = ["template.py", "template.go", "template_test.go"]
+
 current_year = datetime.now().year
 # Change this if you want to download input files from another year
 
@@ -140,16 +142,17 @@ def get_markdown(year, day):
 
   return content
 
-
 file_dir = os.path.dirname(os.path.realpath(__file__))
 if YEAR_IN_FOLDER_NAME:
   file_dir += str(current_year) + " "
-file_dir = os.path.join(file_dir, "Dec " + str(current_day))
+file_dir = os.path.join(file_dir, "Dec" + str(current_day))
 
 print(file_dir)
 if not os.path.exists(file_dir):
   print(file_dir)
   os.makedirs(file_dir, exist_ok=False)
+# os.makedirs(os.path.join(file_dir, "partone"), exist_ok=False)
+# os.makedirs(os.path.join(file_dir, "parttwo"), exist_ok=False)
 
 file_path = os.path.join(file_dir, "README.md")
 
@@ -162,3 +165,24 @@ print("\nFichier du problème du jour récupéré avec succès !")
 
 if DOWNLOAD_INPUT_FILE:
   download_input_txt_file(current_day, current_year, YEAR_IN_FOLDER_NAME)
+
+def write_template_files(dest_name):
+  if TEMPLATE_FILES:
+    for templateName in TEMPLATE_FILES:
+      template_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), templateName)
+      # template_dir = os.path.join(file_dir, )
+
+      with open(template_path, "r") as template_file:
+        template_content = template_file.read()
+
+      template_file_path = os.path.join(file_dir, templateName.replace("template", dest_name))
+      template_content = template_content.replace("template", dest_name)
+
+      with open(template_file_path, "w") as template_file:
+        template_file.write(template_content)
+
+    print("\nFichiers template créés avec succès !")
+
+file_name = "dec" + str(current_day)
+write_template_files(file_name)
+# write_template_files("parttwo")
