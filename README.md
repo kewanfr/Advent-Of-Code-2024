@@ -1,4 +1,4 @@
-# Advent Of Code 2023
+# Advent Of Code 2024
 # ==================
 
 ## What is Advent of Code?
@@ -18,6 +18,14 @@ I'm using this repository to keep track of my solutions and to share them.
 pip install requests
 ```
 
+### Get your session cookie 
+
+1. Go to [Advent of Code](http://adventofcode.com/) and log in.
+2. Open the developer tools (F12).
+3. Go to the `Application` tab.
+4. Under `Cookies`, copy the value of the `session` cookie.
+5. Create a `session.txt` file in the root of this repository and paste the value of the `session` cookie in it.
+
 ## Usage
 
 ### Get today's problem and input
@@ -25,7 +33,7 @@ pip install requests
 python get_problem.py
 ```
 
-### Get today's problem only
+### Get today's problem only (without input)
 ```bash
 python get_problem.py -p
 ```
